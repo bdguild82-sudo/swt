@@ -3,121 +3,276 @@
 <head>
 <meta charset="UTF-8">
 <title>SWT | Smart World TradeUs</title>
+
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-7564607050205405"
      crossorigin="anonymous"></script>
 
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-    * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-        font-family: 'Montserrat', sans-serif;
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Montserrat',sans-serif;
+}
+
+body{
+    background:#000;
+    color:#fff;
+    overflow-x:hidden;
+    min-height:100vh;
+    display:flex;
+    flex-direction:column;
+}
+
+.rain{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    height:100%;
+    pointer-events:none;
+    background-image:
+        linear-gradient(white 2px, transparent 2px),
+        linear-gradient(white 2px, transparent 2px);
+    background-size:2px 20px, 2px 20px;
+    background-position:0 0, 50px 0;
+    animation:rain 0.5s linear infinite;
+    opacity:0.15;
+    z-index:-1;
+}
+
+@keyframes rain{
+    0%{background-position:0 0, 50px 0;}
+    100%{background-position:0 20px, 50px 20px;}
+}
+
+nav{
+    width:100%;
+    padding:30px 60px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    position:fixed;
+    top:0;
+    backdrop-filter:blur(6px);
+    z-index:10;
+}
+
+.logo{
+    font-size:34px;
+    font-weight:700;
+    letter-spacing:2px;
+    cursor:pointer;
+    animation:slash 2.5s infinite linear;
+    transition:0.3s ease;
+}
+
+.logo:hover{
+    transform:scale(1.15);
+    text-shadow:0 0 25px white;
+}
+
+@keyframes slash{
+    0%{
+        clip-path:inset(0 0 0 0);
+        opacity:1;
+    }
+    50%{
+        clip-path:inset(0 50% 0 0);
+        opacity:0.7;
+    }
+    100%{
+        clip-path:inset(0 0 0 0);
+        opacity:1;
+    }
+}
+
+.nav-links{
+    display:flex;
+    gap:50px;
+}
+
+.nav-links a{
+    text-decoration:none;
+    color:white;
+    font-size:24px;
+    font-weight:500;
+    transition:0.3s ease;
+}
+
+.nav-links a:hover{
+    transform:scale(1.2);
+    text-shadow:0 0 15px white;
+}
+
+.about{
+    margin-top:220px;
+    padding:0 60px;
+    max-width:1100px;
+    flex:1;
+}
+
+.about h1{
+    font-size:70px;
+    margin-bottom:35px;
+    text-shadow:0 0 25px white;
+    animation:glow 3s infinite alternate;
+}
+
+@keyframes glow{
+    0%{
+        text-shadow:0 0 10px white;
+    }
+    100%{
+        text-shadow:0 0 35px white;
+    }
+}
+
+.typing-text{
+    font-size:28px;
+    line-height:1.9;
+    opacity:0.95;
+    border-right:3px solid white;
+    white-space:pre-wrap;
+    overflow:hidden;
+    width:fit-content;
+    animation:blink 0.7s infinite;
+    min-height:120px;
+}
+
+@keyframes blink{
+    50%{
+        border-color:transparent;
+    }
+}
+
+/* STORES SECTION */
+
+.stores{
+    margin-top:100px;
+}
+
+.stores h2{
+    font-size:55px;
+    margin-bottom:40px;
+    text-shadow:0 0 20px white;
+}
+
+.store-card{
+    width:350px;
+    padding:35px;
+    border:1px solid rgba(255,255,255,0.15);
+    border-radius:25px;
+    backdrop-filter:blur(10px);
+    background:rgba(255,255,255,0.04);
+    transition:0.4s ease;
+    text-align:center;
+    box-shadow:0 0 25px rgba(255,255,255,0.08);
+}
+
+.store-card:hover{
+    transform:translateY(-12px) scale(1.03);
+    box-shadow:0 0 35px rgba(255,255,255,0.25);
+}
+
+.store-card img{
+    width:180px;
+    margin-bottom:25px;
+    filter:drop-shadow(0 0 15px white);
+    transition:0.4s ease;
+}
+
+.store-card:hover img{
+    transform:scale(1.08);
+}
+
+.store-card a{
+    display:inline-block;
+    margin-top:10px;
+    padding:14px 28px;
+    border-radius:50px;
+    text-decoration:none;
+    color:white;
+    border:1px solid white;
+    font-size:18px;
+    transition:0.3s ease;
+}
+
+.store-card a:hover{
+    background:white;
+    color:black;
+    box-shadow:0 0 20px white;
+}
+
+/* FOOTER */
+
+footer{
+    width:100%;
+    padding:25px 40px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    border-top:1px solid rgba(255,255,255,0.15);
+    font-size:18px;
+    opacity:0.8;
+    margin-top:100px;
+}
+
+.developer{
+    text-align:right;
+}
+
+@media(max-width:768px){
+
+    nav{
+        padding:20px;
+        flex-direction:column;
+        gap:20px;
     }
 
-    body {
-        background: #000;
-        color: #fff;
-        overflow-x: hidden;
-    }
-    .rain {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        background-image: 
-            linear-gradient(white 2px, transparent 2px),
-            linear-gradient(white 2px, transparent 2px);
-        background-size: 2px 20px, 2px 20px;
-        background-position: 0 0, 50px 0;
-        animation: rain 0.5s linear infinite;
-        opacity: 0.15;
-        z-index: -1;
+    .nav-links{
+        gap:20px;
     }
 
-    @keyframes rain {
-        0% { background-position: 0 0, 50px 0; }
-        100% { background-position: 0 20px, 50px 20px; }
-    }
-    nav {
-        width: 100%;
-        padding: 30px 60px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        position: fixed;
-        top: 0;
-        backdrop-filter: blur(6px);
-        z-index: 10;
-    }
-    .logo {
-        font-size: 34px;
-        font-weight: 700;
-        letter-spacing: 2px;
-        cursor: pointer;
-        display: inline-block;
-        animation: slash 2.5s infinite linear;
-        transition: transform 0.3s ease, text-shadow 0.3s ease;
+    .nav-links a{
+        font-size:18px;
     }
 
-    .logo:hover {
-        transform: scale(1.2);
-        text-shadow: 0 0 25px white;
+    .about{
+        margin-top:220px;
+        padding:20px;
     }
 
-    @keyframes slash {
-        0% { clip-path: inset(0 0 0 0); opacity: 1; }
-        50% { clip-path: inset(0 50% 0 0); opacity: 0.7; }
-        100% { clip-path: inset(0 0 0 0); opacity: 1; }
-    }
-    .nav-links {
-        display: flex;
-        gap: 50px;
+    .about h1{
+        font-size:50px;
     }
 
-    .nav-links a {
-        text-decoration: none;
-        color: white;
-        font-size: 24px;
-        font-weight: 500;
-        transition: 0.3s ease;
+    .typing-text{
+        font-size:22px;
     }
 
-    .nav-links a:hover {
-        transform: scale(1.2);
-        text-shadow: 0 0 15px white;
-    }
-    .about {
-        margin-top: 200px;
-        padding: 0 60px;
-        max-width: 900px;
+    .stores h2{
+        font-size:42px;
     }
 
-    .about h1 {
-        font-size: 65px;
-        margin-bottom: 25px;
-        text-shadow: 0 0 25px white;
-        animation: glow 3s infinite alternate;
+    .store-card{
+        width:100%;
     }
 
-    @keyframes glow {
-        0% { text-shadow: 0 0 10px white; }
-        100% { text-shadow: 0 0 30px white; }
+    footer{
+        flex-direction:column;
+        gap:10px;
+        text-align:center;
     }
 
-    .about p {
-        font-size: 26px;
-        line-height: 1.8;
-        opacity: 0.9;
+    .developer{
+        text-align:center;
     }
-    footer {
-        margin-top: 150px;
-        padding: 20px;
-        text-align: center;
-        opacity: 0.7;
-        font-size: 20px;
-    }
+}
+
 </style>
 </head>
 
@@ -136,16 +291,87 @@
 </nav>
 
 <section class="about">
+
     <h1>About Us</h1>
-    <p>
-        SWT — Smart World Trade
-        <br><br>
-    </p>
+
+    <p class="typing-text" id="typing"></p>
+
+    <!-- STORES SECTION -->
+
+    <div class="stores">
+
+        <h2>Stores</h2>
+
+        <div class="store-card">
+
+            <img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/EBay_logo.svg" alt="eBay Logo">
+
+            <br>
+
+            <a href="https://www.ebay.com/usr/xamafx" target="_blank">
+                Visit Our eBay Store
+            </a>
+
+        </div>
+
+    </div>
+
 </section>
 
 <footer>
-Site Developer: Tamim Mojumder
+
+    <div>
+        Smart World Trade LLC © 2026
+    </div>
+
+    <div class="developer">
+        Site Developed By Tamim Mojumder
+    </div>
+
 </footer>
+
+<script>
+
+const text =
+"We are a E-commerce small business that aims to provide the best quality products for our customers.";
+
+const typingElement = document.getElementById("typing");
+
+let index = 0;
+let deleting = false;
+
+function typeLoop(){
+
+    if(!deleting){
+
+        typingElement.innerHTML = text.substring(0, index);
+        index++;
+
+        if(index > text.length){
+
+            deleting = true;
+            setTimeout(typeLoop, 1800);
+            return;
+        }
+
+    }else{
+
+        typingElement.innerHTML = text.substring(0, index);
+        index--;
+
+        if(index < 0){
+
+            deleting = false;
+            index = 0;
+        }
+    }
+
+    setTimeout(typeLoop, deleting ? 35 : 70);
+}
+
+typeLoop();
+
+</script>
 
 </body>
 </html>
